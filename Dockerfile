@@ -9,16 +9,12 @@ RUN apt-get update -qq && \
     libpq-dev \
     nodejs \
     yarn
-RUN apt-get clean
 
 RUN mkdir /app
 WORKDIR /app
 
 COPY Gemfile /app/Gemfile
 COPY Gemfile.lock /app/Gemfile.lock
-COPY entrypoint.sh /app/scripts/
-
-RUN chmod a+x /app/scripts/*.sh
 
 # BUNDLE_PATH: Đường dẫn nơi các gem sẽ được cài đặt.
 # BUNDLE_BIN: Đường dẫn nơi các tệp thực thi (binstubs) sẽ được lưu.
@@ -38,9 +34,12 @@ RUN bundle install --path=${BUNDLER_PATH}
 # Sao chép toàn bộ code của ứng dụng vào container
 COPY . /app
 
+COPY entrypoint.sh /scripts/
+RUN chmod a+x /scripts/*.sh
+
 EXPOSE 3000
 
 # Thiết lập entrypoint
-ENTRYPOINT ["entrypoint.sh"]
+# ENTRYPOINT ["/scripts/entrypoint.sh"]
 
 CMD ["bundle", "exec", "rails", "server", "-b", "0.0.0.0"]
