@@ -1,4 +1,4 @@
 source "https://rubygems.org"
 
 # Change version if needed
-gem "rails", "~> 7.1", ">= 7.1.3"
+gem "rails", "7.0.3"
