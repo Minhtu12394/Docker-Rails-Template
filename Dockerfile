@@ -41,5 +41,3 @@ EXPOSE 3000
 
 # Thiết lập entrypoint
 # ENTRYPOINT ["/scripts/entrypoint.sh"]
-
-CMD ["bundle", "exec", "rails", "server", "-b", "0.0.0.0"]
