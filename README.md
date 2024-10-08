@@ -8,9 +8,9 @@ Go to your projects or work directory and
 git clone git@github.com:Minhtu12394/Docker-Rails-Template.git myapp
 cd myapp
 rm -rf .git
+cp .env.example .env
 docker-compose run app rails new . --force --database=mysql --skip-bundle
 mv database.yml config/database.yml
-cp .env.example .env
 docker-compose build
 docker-compose up
 ```
